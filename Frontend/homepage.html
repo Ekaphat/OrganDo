@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    /*html, body {
+    min-height: 50%;
+    background-color: #8eb4cc;
+    }*/
+    body, div, form, input, select, textarea, label, p { 
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-family: "Calibri";
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: bold;
+    }
+    h1 {
+    position: absolute;
+    font-size: 30px;
+    color: #004E76;
+    font-family: "Calibri";
+    font-weight: bold;
+    }
+    
+    .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    padding: 50px;
+    }
+    .form {
+    width: 50%;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 8px  #a1a1a1; 
+    border-radius: 30px; 
+    }
+    .banner {
+    position: relative;
+    height: 50px;
+    background-color: white;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    }
+    .banner1 {
+    position: relative;
+    height: 50px;
+    background-color: white;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5%;
+    }
+    
+ 
+    button {
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px; 
+    background:  #ffecc9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.58);
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    font-family: "Calibri";
+    font-weight: bold;
+    margin-bottom: 4%;
+    }
+    
+    button:hover {
+    background: #ffd68a;
+    }
+
+    .info{
+      color: #fff;
+      font-family: "Calibri";
+      font-size: 20px;
+    }
+
+    #clock {
+    color: #fff;
+    padding: 20px;
+    margin: 5px;
+    background-color: #004E76;
+    border-radius: 10px;  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 280px;
+    
+  }
+.space {
+      position: fixed;
+      height: 120%;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+  }
+  .usermanage {
+  margin-right: 8%;
+  text-align: right;
+  font-family: "Calibri";
+  font-weight: bold;
+  font-size: 16px;
+  
+}
+
+.bbtn {
+        width: 110px;
+        padding: 6px;
+        border: none;
+        border-radius: 30px; 
+        background:  #ca0000;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+        }
+        .bbtn:hover {
+        background:#ec9191;
+        }
+  </style>
+
+
+        <title>Homepage</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>   
+        var username = localStorage.getItem("username")
+          
+        async function showCaseNum(){
+          const data = await axios.get('http://localhost:3000/homepage')
+
+          const updatedCaseNo = document.getElementById("updatecase")
+          updatedCaseNo.innerText= data.data.length
+          
+          const liver = await axios.get('http://localhost:3000/liverdetails')
+
+          const liverno = document.getElementById("liverno")
+          liverno.innerText= liver.data.length
+
+          const kidney = await axios.get('http://localhost:3000/kidneydetails')
+
+          const kidneyno = document.getElementById("kidneyno")
+          kidneyno.innerText= kidney.data.length
+
+          const lung = await axios.get('http://localhost:3000/lungdetails')
+
+          const lungno = document.getElementById("lungno")
+          lungno.innerText= lung.data.length
+
+          const heart = await axios.get('http://localhost:3000/heartdetails')
+
+          const heartno = document.getElementById("heartno")
+          heartno.innerText= heart.data.length
+
+          const bone = await axios.get('http://localhost:3000/bonedetails')
+
+          const boneno = document.getElementById("boneno")
+          boneno.innerText= bone.data.length
+
+          const bonemarrow = await axios.get('http://localhost:3000/bonemarrowdetails')
+
+          const bonemarrowno = document.getElementById("bonemarrowno")
+          bonemarrowno.innerText= bonemarrow.data.length
+
+          const pancreas = await axios.get('http://localhost:3000/pancreasdetails')
+
+          const pancreasno = document.getElementById("pancreasno")
+          pancreasno.innerText= pancreas.data.length
+
+          const cornea = await axios.get('http://localhost:3000/corneadetails')
+
+          const corneano = document.getElementById("corneano")
+          corneano.innerText= cornea.data.length
+
+          
+        }
+        
+        function logout(){
+            localStorage.clear()
+            window.location.href = "login.html";
+        }
+
+        function moreInfo(){
+            window.location.href = "searchOrgandonaDetails.html";
+        }
+
+        function donateOrgan(){
+            window.location.href = "regisorgan.html";
+        }
+
+        function donateBlood(){
+            window.location.href = "BloodRegisterForm.html";
+        }
+
+        function viewVisualCard(){
+            window.location.href = "View visual card.html";
+        }
+
+        function updateInfo(){
+            window.location.href = "UpdatePersonalInfo.html";
+        }
+
+    </script>
+</head>
+<body onload="showCaseNum()">
+
+<div class="center" >
+
+    <div class="box">
+        <img class = "space" src="assets/Login2.png" align ="left">
+        <div class="form">
+          <div class="usermanage" style="height: 40px;">
+            <p><script type="text/javascript"> document.write(username)</script></p>
+            <button class = "bbtn" onclick="logout()">log out</button>
+          </div>
+  
+          <div class="banner1" style="height: 55px;">
+              <img src="assets/Fulllogo.jpeg" width="240" height="70"> 
+      
+          </div>
+          <div class="banner" style="height: 60px; "> 
+            <h1>DONATED CASE NUMBER</h1>
+          </div>
+  
+          <div class="banner" style="height: 110px; "> 
+              <h1 style="font-size: 150px; color: tomato;" id="updatecase"></h1>
+            </div>
+          
+          <div class="banner" style="height: 120px; "> 
+              
+            <div id="clock">
+              <div>
+                <div id="liverno" class="info"></div>
+                <div>liver</div>
+              </div>
+              <div>
+                <div id="kidneyno" class="info"></div>
+                <div>kidney</div>
+              </div>
+              <div>
+                <div id="lungno" class="info"></div>
+                <div>lung</div>
+              </div>
+              <div>
+                <div id="heartno" class="info"></div>
+                <div>heart</div>
+              </div>
+            </div>
+          </div>
+          <div class="banner" style="height: 80px; "> 
+              
+            <div id="clock">
+              <div>
+                <div id="boneno" class="info"></div>
+                <div>bone</div>
+              </div>
+              <div>
+                <div id="bonemarrowno" class="info"></div>
+                <div>bonemarrow</div>
+              </div>
+              <div>
+                <div id="pancreasno" class="info"></div>
+                <div>pancreas</div>
+              </div>
+              <div>
+                <div id="corneano" class="info"></div>
+                <div>cornea</div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="banner" style="height: 50px; margin-top: 30px;">
+            <button name="donationinfobtn" onclick="moreInfo()" style="width: 200px;">Donation info</button>
+  
+          </div>
+          <div class="banner" style="height: 80px;">
+            
+            <button name="organregisbtn" onclick="donateOrgan()" style="width: 200px;"> Organ Donation registration</button>
+            
+          </div>
+  
+          <div class="banner" style="height: 80px;">
+            <button name="bloodregisbtn" onclick="donateBlood()" style="width: 200px;">Blood Donation registration</button>
+  
+          </div>
+          <div class="banner" style="height: 80px;">
+            <button name="updateInfobtn" onclick="updateInfo()" style="width: 200px;">Update personal information</button>
+  
+          </div>
+          <div class="banner" style="height: 50px;">
+            <button name="visualcardbtn" onclick="viewVisualCard()" style="width: 200px;">Visual card</button>
+          </div>
+        </div>
+      </div>
+</div>
+</body>
+<footer></footer>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blood Donation Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <style>
+        body,
+        div,
+        form,
+        input,
+        select,
+        textarea,
+        label,
+        p {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            font-family: "Calibri";
+            font-size: 14px;
+            line-height: 22px;
+
+        }
+
+        h1 {
+            position: absolute;
+            margin: 0;
+            font-size: 20px;
+            color: #fff;
+            z-index: 2;
+            line-height: 83px;
+        }
+
+        h2 {
+            position: absolute;
+            margin: 0;
+            font-size: 30px;
+            color: #fff;
+            z-index: 2;
+            line-height: 83px;
+        }
+
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 20px;
+        }
+
+        .form {
+            width: 50%;
+            padding: 20px;
+            border-radius: 25px;
+            background: #fff;
+            box-shadow: 0 0 8px #a1a1a1;
+        }
+
+        .banner {
+            position: relative;
+            height: 50px;
+            border-radius: 12px;
+            background-color: #004E76;
+            background-size: cover;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner2 {
+            position: relative;
+            height: 50px;
+            background-color: white;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        input,
+        select,
+        textarea {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 5px;
+        }
+
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+            border-radius: 12px;
+        }
+
+        .item:hover p,
+        .item:hover i,
+        .choice:hover p,
+        input:hover::placeholder {
+            color: #004E76;
+        }
+
+        .item input:hover,
+        .item select:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 3px 0 #004E76;
+            color: #004E76;
+        }
+
+        .item {
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .item span {
+            color: red;
+        }
+
+        .organ {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .colums {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .colums div {
+            width: 100%;
+        }
+
+        .item i {
+            position: absolute;
+            font-size: 20px;
+            color: #a3c2c2;
+        }
+
+        .item i {
+            right: 1%;
+            top: 30px;
+            z-index: 1;
+        }
+
+        input[type=checkbox] {
+            display: none;
+        }
+
+        label.checkbox {
+            position: relative;
+            display: inline-block;
+            margin: 5px 20px 15px 0;
+            cursor: pointer;
+        }
+
+        .question-answer {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .question-answer div {
+            width: 50%;
+        }
+
+        .choice span {
+            margin-left: 30px;
+        }
+
+        .question-answer label {
+            display: block;
+        }
+
+        label.checkbox::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+
+        input[type=checkbox]:checked+label:before,
+        label.radio:hover:before {
+            border: 2px solid #004E76;
+        }
+
+        label.checkbox::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            width: 8px;
+            height: 4px;
+            border: 3px solid #004E76;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            opacity: 0;
+        }
+      
+        input[type=checkbox]:checked+label:after {
+            opacity: 1;
+        }
+       
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 15px;
+            background: #004E76;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #8eb4cc;
+        }
+
+        .form-control {
+            margin: 10px 10px;
+            border-radius: 10px;
+            border: 1px solid rgb(187, 187, 187);
+            float: left;
+        }
+
+
+        .cancelbtn {
+            background-color: #f44336;
+            border-radius: 15px;
+        }
+
+        .cancelbtn:hover {
+            background: #cc8e8e;
+        }
+
+        .space {
+            position: fixed;
+            height: 120%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .organ {
+            padding-left: 5%;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+            border-right: 1px solid #bbb;
+        }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #04AA6D;
+        }
+
+        .tab {
+            width: 100px;
+            padding: 5px;
+            border: none;
+            border-radius: 15px;
+            background: #004E76;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .tab:hover {
+            background: #6b92c5;
+        }
+
+        .bbtn {
+            width: 100px;
+            padding: 5px;
+            border: none;
+            border-radius: 15px;
+            background: #ca0000;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .bbtn:hover {
+            background: #ec9191;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        async function submit() { 
+            
+            const place = document.getElementById("place").value
+            const DonationDate = document.getElementById("DonationDate").value
+            const purpose = []
+            
+            if (document.getElementById("purpose3").checked == true) {
+                purpose.push(document.getElementById("purpose3").value)
+            }
+            if (document.getElementById("purpose4").checked == true) {
+                purpose.push(document.getElementById("purpose4").value)
+            }
+            if (document.getElementById("purpose5").checked == true) {
+                purpose.push(document.getElementById("purpose5").value)
+            }
+            
+            if (purpose.length==0){
+                alert("Please Select What do you want to donate")
+            }
+
+            if (DonationDate==""){
+                alert("Please Select Donation Date")
+            }
+
+            if (place=="please specify"){
+                alert("Please Select Donation Place")
+            }
+
+            if (document.getElementById("terms").checked == true && purpose.length!=0 && place!="please specify" && DonationDate!="") {
+                const donationform = {
+                    
+                    DonationDate: DonationDate,
+                    place: place,
+                    purpose: purpose,
+                      
+
+                }
+
+                const data = await axios.post('http://localhost:3000/BloodRegisterForm', donationform)
+                console.log(data)
+                window.location.href = "homepage.html";
+            }
+            if (document.getElementById("terms").checked == false) {
+                alert("Please confirm the condition");
+            }
+
+        }
+
+        function cancel(){
+              alert("Are you sure you want to cancel the progress?");
+              window.location.href = "homepage.html";
+            }
+    </script>
+
+</head>
+
+<body>
+
+    <img class="space" src="assets/Bloodregisbg.png" align="left">
+    <div class="box">
+        <div class="form">
+            <div class="banner2">
+                <h2 style="color: #004E76;">BLOOD DONATION FORM</h2>
+            </div>
+
+            <div class="banner">
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;Basic Information</h1>
+            </div>
+
+            <legend>
+                <h3>
+                    <p align="left">What do you want to donate?</p>
+                </h3>
+            </legend>
+            <div class="organ">
+                <div class="choice">
+                    <div class="question-answer1">
+                        <div>
+                            
+                            <input type="checkbox" value="Plasma" id="purpose3" name="purpose3" />
+                            <label for="purpose3" class="checkbox"><span>Plasma</span></label>
+                            <input type="checkbox" value="Red Blood Cell" id="purpose4" name="purpose4" />
+                            <label for="purpose4" class="checkbox"><span>Red Blood Cell</span></label>
+                            <input type="checkbox" value="Platelets" id="purpose5" name="purpose5" />
+                            <label for="purpose5" class="checkbox"><span>Platelets</span></label>
+                          
+                            <div class="mb-3">
+                                <label for="visit">Date of Donation : </label>
+                                <input name="dateOfbirth" class="form-control" th:field="*{dob}" id="DonationDate"
+                                    placeholder="DonationDate..." type="date" required />
+                            </div>
+                            <label for="visit">Choose Donation Place :</label>
+
+                            <div class="mb-3">
+
+                                <select th:field="*{place}" class="form-control" id="place">
+
+                                    <option id="please specify" value="please specify" disabled selected>select location</option>
+                                    <option id="ational Blood Centre" value="ational Blood Centre">National Blood Centre</option>
+                                    <option id="Siriraj Hospital" value="Siriraj Hospital">Siriraj Hospital</option>
+                                    <option id="Police General Hospital" value="Police General Hospital">Police General Hospital</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="banner">
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;Acknowledgment and Terms</h1>
+              </div>
+              <legend>
+                <h3></h3>
+              </legend>
+              <div class="organ">
+                <div class="choice">
+                  <div class="question-answer1">
+                    <div>
+                      <input type="checkbox" value="confirm" id="terms" name="terms"/>
+                      <label for="terms" class="checkbox"><span>I confirm that the information I provided in this document is accurate and true, acknowledge that I have                to inform my family about this registration, and allow my information to be submitted to donor registry.</span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="btn-block">
+                <button name="submit" onclick="submit()">Submit</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button name="cancel" onclick="cancel()" class="cancelbtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

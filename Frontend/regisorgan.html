@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+    <html>
+      <head>
+        <title>Organ Donation Form</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        
+        <style>
+          body, div, form, input, select, textarea, label, p { 
+          padding: 0;
+          margin: 0;
+          outline: none;
+          font-family: "Calibri";
+          font-size: 14px;
+          line-height: 22px;
+          
+          }
+          h1 {
+          position: absolute;
+          margin: 0;
+          font-size: 20px;
+          color: #fff;
+          z-index: 2;
+          line-height: 83px;
+          }
+          h2 {
+          position: absolute;
+          margin: 0;
+          font-size: 30px;
+          color: #fff;
+          z-index: 2;
+          line-height: 83px;
+          }
+          textarea {
+          width: calc(100% - 12px);
+          padding: 5px;
+          }
+          .box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: inherit;
+          padding: 20px;
+          }
+          .form {
+          width: 50%;
+          padding: 20px;
+          border-radius: 25px;
+          background: #fff;
+          box-shadow: 0 0 8px  #a1a1a1; 
+          }
+          .banner {
+          position: relative;
+          height: 50px;
+          border-radius: 12px;
+          background-color: #004E76;
+          background-size: cover;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          text-align: center;
+          }
+          .banner2 {
+          position: relative;
+          height: 50px;
+          background-color: white;
+          background-size: cover;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          }
+          
+          input, select, textarea {
+          margin-bottom: 10px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          }
+          input {
+          width: calc(100% - 10px);
+          padding: 5px;
+          }
+          
+          textarea {
+          width: calc(100% - 12px);
+          padding: 5px;
+          border-radius: 12px;
+          }
+          .item:hover p, .item:hover i, .choice:hover p, input:hover::placeholder {
+          color:  #004E76;
+          }
+          .item input:hover, .item select:hover{
+          border: 1px solid transparent;
+          box-shadow: 0 0 3px 0  #004E76;
+          color: #004E76;
+          }
+          .item {
+          position: relative;
+          margin: 10px 0;
+          }
+          .item span {
+          color: red;
+          }
+          .organ {
+          display:flex;
+          justify-content:space-between;
+          
+          }
+      
+          .colums {
+          display:flex;
+          justify-content:space-between;
+          flex-direction:row;
+          flex-wrap:wrap;
+          }
+          .colums div {
+          width:100%;
+          }
+          
+          .item i {
+          position: absolute;
+          font-size: 20px;
+          color:  #a3c2c2;
+          }
+          .item i {
+          right: 1%;
+          top: 30px;
+          z-index: 1;
+          }
+          input[type=checkbox]  {
+          display: none;
+          }
+          label.checkbox{
+          position: relative;
+          display: inline-block;
+          margin: 5px 20px 15px 0;
+          cursor: pointer;
+          }
+          
+          .question-answer{
+          display:flex;
+          justify-content:space-between;
+          flex-direction:row;
+          flex-wrap:wrap;
+          }
+          .question-answer div{
+            width: 50%;
+          }
+          .choice span {
+          margin-left: 30px;
+          }
+          .question-answer label {
+          display: block;
+          }
+          label.checkbox::before{
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 17px;
+          height: 17px;
+          border-radius: 50%;
+          border: 2px solid #ccc;
+          }
+          
+          input[type=checkbox]:checked + label:before, label.radio:hover:before {
+          border: 2px solid  #004E76;
+          }
+          
+          label.checkbox::after{
+          content: "";
+          position: absolute;
+          top: 6px;
+          left: 5px;
+          width: 8px;
+          height: 4px;
+          border: 3px solid  #004E76;
+          border-top: none;
+          border-right: none;
+          transform: rotate(-45deg);
+          opacity: 0;
+          }
+          
+          input[type=checkbox]:checked + label:after {
+          opacity: 1;
+          }
+          
+          
+    
+          .btn-block {
+          margin-top: 10px;
+          text-align: center;
+          }
+          button {
+          width: 150px;
+          padding: 10px;
+          border: none;
+          border-radius: 15px; 
+          background:  #004E76;
+          font-size: 16px;
+          color: #fff;
+          cursor: pointer;
+          }
+          button:hover {
+          background:#8eb4cc;
+          }
+
+          
+          
+    
+          .cancelbtn {background-color: #f44336;
+            border-radius: 15px; } 
+          .cancelbtn:hover {
+          background:#cc8e8e;
+          }
+          .space {
+            position: fixed;
+            height: 120%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .organ{
+          padding-left: 5%;
+        }
+        ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    li {
+      float: left;
+      border-right:1px solid #bbb;
+    }
+    
+    li:last-child {
+      border-right: none;
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+    
+    .active {
+      background-color: #04AA6D;
+    }
+    .tab{
+            width: 100px;
+            padding: 5px;
+            border: none;
+            border-radius: 15px; 
+            background:  #004E76;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+          }
+          .tab:hover {
+          background:#6b92c5;
+          }
+    .bbtn {
+          width: 100px;
+          padding: 5px;
+          border: none;
+          border-radius: 15px; 
+          background:  #ca0000;
+          font-size: 16px;
+          color: #fff;
+          cursor: pointer;
+          margin: 10px;
+          }
+          .bbtn:hover {
+          background:#ec9191;
+          }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            
+             async function submit(){
+                const username = localStorage.getItem("username")
+                const allergy = document.getElementById("allergy").value
+                const medication = document.getElementById("medication").value
+                const condition = document.getElementById("condition").value
+                if (allergy==""){
+                  alert("Please answer the allergy question")
+                }
+                if (medication==""){
+                  alert("Please answer the medication question")
+                }
+                if (condition==""){
+                  alert("Please answer the medical condition question")
+                }
+                
+                const organ = []
+
+                if (document.getElementById("organ1").checked==true){
+                  organ.push(document.getElementById("organ1").value)
+                }
+                if (document.getElementById("organ2").checked==true){
+                  organ.push(document.getElementById("organ2").value)
+                }
+                if (document.getElementById("organ3").checked==true){
+                  organ.push(document.getElementById("organ3").value)
+                }
+                if (document.getElementById("organ4").checked==true){
+                  organ.push(document.getElementById("organ4").value)
+                }
+                if (document.getElementById("organ5").checked==true){
+                  organ.push(document.getElementById("organ5").value)
+                }
+                if (document.getElementById("organ6").checked==true){
+                  organ.push(document.getElementById("organ6").value)
+                }
+                if (document.getElementById("organ7").checked==true){
+                  organ.push(document.getElementById("organ7").value)
+                }
+                if (document.getElementById("organ8").checked==true){
+                  organ.push(document.getElementById("organ8").value)
+                }
+
+                if (organ.length==0){
+                alert("Please select what do you want to donate")
+                }
+
+
+                const purpose = []
+
+                if (document.getElementById("purpose1").checked==true){
+                  purpose.push(document.getElementById("purpose1").value)
+                }
+                if (document.getElementById("purpose2").checked==true){
+                  purpose.push(document.getElementById("purpose2").value)
+                }
+                if (purpose.length==0){
+                  alert("Please select the purpose") 
+                }
+
+                if (document.getElementById("terms").checked==true){
+                  
+                  const donationform = {
+                    username: username,
+                    allergy: allergy,
+                    medication: medication,
+                    condition: condition,
+                    organ: organ,
+                    purpose: purpose
+                }
+
+                const data = await axios.post('http://localhost:3000/regisorgan',donationform)
+                console.log(data)
+                window.location.href = "homepage.html";
+                }     
+                if (document.getElementById("terms").checked==false){
+                alert("Please confirm the condition");
+                }
+
+            }
+
+            function cancel(){
+              alert("Are you sure you want to cancel the progress?");
+              window.location.href = "homepage.html";
+            }
+
+            function logout(){
+            localStorage.clear()
+            window.location.href = "login.html";
+            }
+
+            function back(){
+            window.location.href = "homepage.html";
+            }
+
+
+        </script>
+
+
+      </head>
+      <body>
+        <img class = "space" src="assets/bgDonateForm.png"  align ="left">
+        <div class="box">
+          <div class ="form" >
+            <div class="banner2">
+              <h2 style="color: #004E76;">ORGAN DONATION FORM</h2>
+            </div>
+            <div class="banner">
+              <h1>&nbsp;&nbsp;&nbsp;&nbsp;Medical Data</h1>
+            </div>
+            <div class="item">
+              <label for="visit">Do you have any known allergies? If yes, then please specify below. If no, then please type no.</label>
+              <textarea name="allergy" id="allergy" rows="3" required></textarea>
+            </div>
+    
+            <div class="item">
+              <label for="visit">Are you currently taking medications? If yes, then please list the medications and the reasons why are you taking them. If no, then please type no.</label>
+              <textarea name="medication" id="medication" rows="3" required></textarea>
+            </div>
+    
+            <div class="item">
+              <label for="visit">What is your current medical condition? Do you have any communicable disease, cardiovascular problems, diabetes, asthma etc.? If no, then please type no.</label>
+              <textarea name="condition" id="condition" rows="3" required></textarea>
+            </div>
+    
+            <div class="banner">
+              <h1>&nbsp;&nbsp;&nbsp;&nbsp;Organ Donation Details</h1>
+            </div>
+    
+            <legend>
+              <h3>&nbsp;&nbsp;&nbsp;&nbsp;Organs to be donated</h3>
+            </legend>
+    
+            <div class="organ">
+              <div class="choice">
+                <div class="question-answer">
+                  <div>
+                    <input type="checkbox" value="Liver" id="organ1" name="organ1"/>
+                    <label for="organ1" class="checkbox"><span>Liver</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Kidney" id="organ2" name="organ2"/>
+                    <label for="organ2" class="checkbox"><span>Kidney</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Pancreas" id="organ3" name="organ3"/>
+                    <label for="organ3" class="checkbox"><span>Pancreas</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Heart" id="organ4" name="organ4"/>
+                    <label for="organ4" class="checkbox"><span>Heart</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Cornea" id="organ5" name="organ5"/>
+                    <label for="organ5" class="checkbox"><span>Cornea</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Bone" id="organ6" name="organ6"/>
+                    <label for="organ6" class="checkbox"><span>Bone</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Lung" id="organ7" name="organ7"/>
+                    <label for="organ7" class="checkbox"><span>Lung</span></label>
+                  </div>
+                  <div>
+                    <input  type="checkbox" value="Bone Marrow" id="organ8" name="organ8"/>
+                    <label for="organ8" class="checkbox"><span>Bone Marrow</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+        
+            <legend>
+              <h3>&nbsp;&nbsp;&nbsp;&nbsp;Specific Purpose</h3>
+            </legend>
+            
+            <div class="organ">
+              <div class="choice">
+                <div class="question-answer1">
+                  <div>
+                    <input type="checkbox" value="Medical Transplant" id="purpose1" name="purpose1"/>
+                    <label for="purpose1" class="checkbox"><span>Medical Transplant</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input  type="checkbox" value="Edocation/Research" id="purpose2" name="purpose2"/>
+                    <label for="purpose2" class="checkbox"><span>Education/Research</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          
+            <div class="banner">
+              <h1>&nbsp;&nbsp;&nbsp;&nbsp;Acknowledgment and Terms</h1>
+            </div>
+            <legend>
+              <h3></h3>
+            </legend>
+            <div class="organ">
+              <div class="choice">
+                <div class="question-answer1">
+                  <div>
+                    <input type="checkbox" value="confirm" id="terms" name="terms"/>
+                    <label for="terms" class="checkbox"><span>I confirm that the information I provided in this document is accurate and true, acknowledge that I have                to inform my family about this registration, and allow my information to be submitted to donor registry.</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="btn-block">
+              <button name="submitbtn" onclick="submit()">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button onclick="cancel()" class="cancelbtn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>

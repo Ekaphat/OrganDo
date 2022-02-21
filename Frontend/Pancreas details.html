@@ -1,0 +1,175 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url(assets/bgDonateForm.png);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        h4 {
+            font-size: 30px;
+            font-family: "Calibri";
+            right: 60%;
+            color: black;
+            font-weight: bold;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+        .button-login{
+
+            padding: 6px 70px;
+        }
+        .button-loginn{
+
+            padding: 6px 45px;
+        }
+        div.container{
+            width: 1000px;
+            height: 420px;
+            transform: translate(5%, 30%);
+            right: 80%;
+            bottom: 68%;
+            left: initial;
+            top: initial;
+            text-align: left;
+        }
+        .input-field {
+            max-width: 400px;
+            margin: 15px 0;
+            width: 80%;
+            height: 40px;
+            border-radius: 30px;
+            border: 1px solid rgb(114, 114, 114);
+            display: grid;
+            grid-template-columns: 15% 85%;
+            padding: 0 0.4rem;
+            position: relative;
+        }
+        .input-field i {
+            text-align: center;
+            line-height: 38px;
+            color: #b6b6b6;
+            transition: 0.5s;
+            font-size: 1rem;
+        }
+        .input-field input {
+            background: none;
+            outline: none;
+            border: none;
+            line-height: 31px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #333;
+        }
+        .input-field input::placeholder {
+            color: #aaa;
+            font-weight: 200;
+        }
+
+
+        .btn {
+            background-color: #1544c4;
+            border: none;
+            outline: none;
+            width: 120px;
+            height: 35px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #6185d1;
+            color: #fff;
+        }
+        .w3-bar{
+            margin: 0;
+            position: absolute;
+            top: 78%;
+            left: 42%;
+        }
+        hr{
+            margin-top: 20px;
+            color: #aaa;
+        }
+
+        .center {
+            background-color: white;
+            position: absolute;
+            height: 690px;
+            width: 75%;
+            left: 12%;
+            top: 2.5%;
+            border-radius: 32px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function showOrganNum(){
+            const data = await axios.get('http://localhost:3000/pancreasdetails')
+            const updatedCaseNo = document.getElementById("updateorgannum")
+            updatedCaseNo.innerText= 15-data.data.length
+            console.log(data)
+        }
+    </script>
+</head>
+<body onload="showOrganNum()">
+
+
+<div class="center"><img align="right" src="assets/icon.png" width="200px" height="50px" style="margin-top: 20px">
+
+    <form>
+        <img src="assets/pic2/P1.png" align="left">
+
+        <div class="container">
+            <div class="column right">
+                <b><h3>Pancreas Donation Information</h3></b>
+                <br>
+                <p>A pancreas donation is needed when the pancreas no longer functions properly. The pancreas sits just behind your stomach — it creates insulin to control your sugar levels and the amount of sugar in your blood, and releases the nutrients in your food that keep you healthy. Nearly all pancreas transplants are done to treat type 1 diabetes, a condition for which a pancreas transplant offers a potential cure. In some cases, pancreas transplants may be performed to treat type 2 diabetes, or in the treatment of pancreatic, bile duct or other cancers.</p>
+                <p>The side effects of a pancreas transplant can be significant, so a pancreas transplant is typically reserved for those who have serious diabetes complications.</p>
+                <p>Pancreas transplant patients may be in the intensive care unit for a few days and spend, on average, a week in the hospital. Transplant recipients may take a number of medications after transplant, many for the rest of their lives. The medications help reduce the risk of complications after transplant.</p>
+    </form>
+
+    <!------------------------------------------------------Register button------------------------------------------->
+
+    <div class="w3-container w3-left">
+        <div class="w3-bar">
+            <!--<h8><a href=""><b><p style="color:#C1121F">Click here</p></b></a></h8>-->
+            <br><br><br><br><br><h9>The number of required organ :</h9>
+            <h8><h8 href="regisorgan.html"><b style="color:#C1121F;font-size:30px;" id="updateorgannum"></b></a></h8> <!-- href put the form link-->
+        </div>
+    </div>
+
+    <div class="w3-container w3-left">
+        <div class="w3-bar">
+            <!--<h8><a href=""><b><p style="color:#C1121F">Click here</p></b></a></h8>-->
+            <br><br><br><br><br><br><br><h9>Want to donate your organ?</h9>
+            <h8><a href="regisorgan.html"><b style="color:#C1121F">Click here</b></a></h8> <!-- href put the form link-->
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+

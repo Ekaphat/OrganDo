@@ -1,0 +1,370 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Update Personal Info Page</title>
+    
+<!-- No Script Yet -->    
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
+
+    <style>
+    
+    h2 {
+        font-size: 30px;
+        font-family: "Calibri";
+        text-align: center;
+        color: black;
+        font-weight: bold;
+    }
+    
+    .sp{
+        position: fixed;
+        height: 130%;
+        width: 100%;
+        left: -1;
+        bottom: 0;
+        z-index: -1;}
+
+    .child{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        background-color: #FFFFFF;
+        width: 5000px;
+        height: 5000px;
+        border-radius: 10%;
+        box-shadow: 10px 10px 8px 10px #888888;
+    }
+
+    .insideForm{
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 5%;
+    }
+
+    .form-control{
+        border-radius: 10px;
+        border: 1px solid rgb(187, 187, 187);
+        float: left;
+    }
+
+    .formLabel{
+        font-family: Calibri;
+        font-size: 16px;
+        font-weight: bold;
+        color: #828282;
+        margin-top: 2%;
+    }
+
+    .flex-parent {
+        display: flex;
+    }
+
+    .jc-center {
+        justify-content: center;
+        margin-bottom: 5%;
+    }
+
+    button.margin-right {
+         margin-right: 20%;
+    }
+
+    .bbtn {
+          width: 100px;
+          padding: 5px;
+          border: none;
+          border-radius: 15px; 
+          background:  #ca0000;
+          font-size: 16px;
+          color: #fff;
+          cursor: pointer;
+          }
+
+    .bbtn:hover {
+        background:#ec9191;
+    }
+
+    .tab{
+            width: 100px;
+            padding: 5px;
+            border: none;
+            border-radius: 15px; 
+            background:  #004E76;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+          }
+          .tab:hover {
+          background:#6b92c5;
+          }
+    
+    .header{
+        margin: 5%;
+        font-family: Calibri;
+        text-align: left;
+        font-size: 40px;
+        color: #C1121F;
+    }
+
+    .logo{
+        margin: 0%;
+        align-items: right;
+    }
+
+    .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 20px;
+        }
+
+    .center {
+        width: 50%;
+            padding: 20px;
+            border-radius: 25px;
+            background: #fff;
+            box-shadow: 0 0 8px #a1a1a1;
+}
+
+</style>
+<script>
+    async function saveAll(){
+            
+            const password = document.getElementById("password").value
+            const address = document.getElementById("address").value
+            const phoneNumber = document.getElementById("phoneNumber").value
+            const emerContact = document.getElementById("emerContact").value
+            const newPass1 = document.getElementById("newPass1").value
+            const newPass2 = document.getElementById("newPass2").value
+            
+            const num = /^[0-9]*$/;
+
+            const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            
+
+            if (phoneNumber.length!=10 || num.test(phoneNumber)==false){
+                console.log()
+                alert("Your phone number is wrong");
+            }
+
+            if (emerContact.length!=10 || num.test(emerContact)==false){
+                console.log()
+                alert("Your emergency contact is wrong");
+            }
+
+            if (newPass1!=newPass2){
+                alert("Password confirmation doesn't match Password");
+            }
+
+            const realpassword = localStorage.getItem("realpassword")
+
+            if (password != realpassword) {
+                alert("your current password didn't match")
+            }
+
+            if ( phoneNumber.length==10 && num.test(phoneNumber)==true && emerContact.length==10 && num.test(emerContact)==true && newPass1==newPass2 && password == realpassword){
+            const firstname = localStorage.getItem("firstname")
+            const lastname = localStorage.getItem("lastname")       
+            const email = localStorage.getItem("username")
+            const dob = localStorage.getItem("dob")    
+            const iden = localStorage.getItem("citizenid") 
+            const bloodType = localStorage.getItem("bloodType") 
+            const gender = localStorage.getItem("gender")     
+            const user = {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                dob: dob,
+                bloodType:bloodType,
+                citizenid:iden,
+                gender:gender,
+                address: address,
+                phoneNumber: phoneNumber,
+                emerContact: emerContact,
+                newPass : newPass1,
+                
+            }
+            
+            const data = await axios.post('http://localhost:3000/updateinfo',user)
+            console.log(data)
+            window.location.href = "homepage.html";
+            localStorage.removeItem("firstname");
+            localStorage.removeItem("lastname");
+            localStorage.removeItem("realpassword");
+            localStorage.removeItem("email");
+            localStorage.removeItem("dob");
+            localStorage.removeItem("citizenid");
+            localStorage.removeItem("gender");
+            localStorage.removeItem("bloodType");
+            
+            }
+
+        }
+
+        async function loadData(){
+            var username = localStorage.getItem("username")
+        const user ={
+                email: username,
+            }
+          const data = await axios.post('http://localhost:3000/visualCard',user)
+            console.log(data.data[0])
+          const firstname = document.getElementById("firstname")
+          firstname.innerText= data.data[0].firstname
+          const lastname = document.getElementById("lastname")
+          lastname.innerText= data.data[0].lastname
+          const email = document.getElementById("email")
+          email.innerText= data.data[0].email
+          const dob = document.getElementById("dob")
+          dob.innerText= data.data[0].dob
+          const iden = document.getElementById("iden")
+          iden.innerText= data.data[0].citizenid
+          const gender = document.getElementById("gender")
+          gender.innerText= data.data[0].gender
+          const bloodType = document.getElementById("bloodType")
+          bloodType.innerText= data.data[0].bloodType
+          localStorage.setItem("firstname", data.data[0].firstname)
+          localStorage.setItem("lastname", data.data[0].lastname)
+          localStorage.setItem("realpassword", data.data[0].password)
+          localStorage.setItem("email", data.data[0].email)
+          localStorage.setItem("dob", data.data[0].dob)
+          localStorage.setItem("citizenid", data.data[0].citizenid)
+          localStorage.setItem("gender", data.data[0].gender)
+          localStorage.setItem("bloodType", data.data[0].bloodType)
+        }
+
+        function back(){
+            localStorage.removeItem("firstname");
+            localStorage.removeItem("lastname");
+            localStorage.removeItem("email");
+            localStorage.removeItem("dob");
+            localStorage.removeItem("citizenid");
+            localStorage.removeItem("gender");
+            localStorage.removeItem("bloodType");
+            window.location.href = "homepage.html";
+        }
+</script>
+</head>
+<body onload="loadData()">
+
+<img class = "sp" src="assets/bgUpdateInfo.png" align ="left">
+
+<div class="box">
+<div class="center">
+     <!-- logo top right -->
+    <img style="margin-top: 4.5%;" align="right" src="assets/icon.png" width="200px" height="50px">
+    
+    <!-- header top left -->
+    <h2><p class="header">Personal Information</p></h2>
+
+    <!-- form -->
+    <div class="form">
+        <div class="insideForm">
+
+            <form class="row g-3">
+                
+                <!-- User Name-->
+                <div class="col-md-6">
+                  <label for="firstname" class="form-label; formLabel">First Name</label>
+                  <p id="firstname"></p>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="lastname" class="form-label; formLabel">Last Name</label>
+                    <p id="lastname"></p>
+                </div>
+
+                <!-- ID No. -->
+                <div class="col-12">
+                    <label for="citizenid" class="form-label; formLabel">Identification Number</label>
+                    <p id="iden"></p>
+                </div>
+
+                <!-- Birth Date -->
+                <div class="col-12">
+                    <label for="dateOfbirth" class="form-label; formLabel">Date of Birth</label>
+                    <p id="dob"></p>
+                </div>
+
+                <!-- Gender -->
+                <div class="col-md-6">
+                <label for="gender" class="form-label; formLabel">Gender</label>
+                    <p id="gender"></p>
+                </div>
+
+                <!-- Add Blood Type -->
+                <div class="col-md-6">
+                <label for="bloodType" class="form-label; formLabel">Blood Type</label>
+                    <p id="bloodType"></p>
+                </div>
+
+                <!-- Address -->
+                <div class="col-12">
+                    <label for="address" class="form-label; formLabel">Address</label>
+                    <textarea id="address" class="form-control" name="adderss" rows="3" cols="20" placeholder="Address....." required></textarea>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="col-md-6">
+                    <label for="phoneNumber" class="form-label; formLabel">Phone Number</label>
+                    <input class="form-control" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" maxlength="10" placeholder="Phone Number" required/>
+                </div>
+
+                <!-- Add Emer Contact -->
+                <div class="col-md-6">
+                    <label for="emerContact" class="form-label; formLabel">Emergency Contact</label>
+                    <input class="form-control" id="emerContact" name="emerContact" pattern="[0-9]{10}" maxlength="10" placeholder="Emergency Contact" required/>
+                </div>
+
+                <!-- Email -->
+                <div class="col-12">
+                    <label for="email" class="form-label; formLabel">E-mail</label>
+                    <p id="email"></p>
+                </div>
+
+                <!-- Password -->
+                <div class="col-12">
+                    <div class="formLabel">Password</div>
+
+                    <!-- Current Password -->
+                    <label for="password" class="form-label; formLabel">Current Password</label>
+                    <input type="password" th:field="*{password}" name="password" id="password" placeholder="Password" class="form-control" required/>
+                </div>
+
+                <!-- Add New Password -->
+                <div class="col-md-6">
+                    <label for="newPass" class="form-label; formLabel">New Password</label>
+                    <input type="newPass" th:field="*{newPass}" name="newPass1" id="newPass1" placeholder="New Password" class="form-control" required/>
+                </div>
+
+                <!-- Add Confirm New Password -->
+                <div class="col-md-6">
+                    <label for="newPass" class="form-label; formLabel">Confirm New Password</label>
+                    <input type="newPass" th:field="*{newPass}" name="newPass2" id="newPass2" placeholder="New Password" class="form-control" required/>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="flex-parent jc-center">
+            <button name="back" onclick="back()" class="tab margin-right">Back</button>
+            <button name="saveall" onclick="saveAll()" class = "bbtn">Save All</button>
+        </div>
+
+    </div>
+
+</div>     
+</div>
+</body>
+</html>

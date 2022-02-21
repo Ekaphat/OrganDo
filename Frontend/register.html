@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title>
+        Registration Page
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        
+        async function submit(){
+            const firstname = document.getElementById("firstname").value
+            const lastname = document.getElementById("lastname").value
+            const email = document.getElementById("email").value
+            const password = document.getElementById("password").value
+            const dob = document.getElementById("dob").value
+            const citizenid = document.getElementById("citizenid").value
+            const gender = document.getElementById("gender").value
+            const bloodType = document.getElementById("bloodType").value
+            const address = document.getElementById("address").value
+            const phoneNumber = document.getElementById("phoneNumber").value
+            const emerContact = document.getElementById("emerContact").value
+            
+            const num = /^[0-9]*$/;
+            const char = /^[A-Za-z]{2,20}$/;
+            const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            
+            if(firstname==""){
+                alert("Please type in your firstname")
+            }
+
+            if(lastname==""){
+                alert("Please type in your lastname")
+            }
+
+            if(re.test(email)!=true){
+                alert("Your email is wrong");
+            }
+
+            if(password==""){
+                alert("Please type in your password")
+            }
+
+            if(dob==""){
+                alert("Please select your date of birth")
+            }
+            
+            if(gender=="default"){
+                alert("Please select your gender")
+            }
+        
+            if(bloodType=="default"){
+                alert("Please select your bloodtype")
+            }
+
+            if (citizenid.length!=13 || num.test(citizenid)==false){
+                alert("Your citizen id is wrong");
+            }
+
+            if (phoneNumber.length!=10 || num.test(phoneNumber)==false){
+                console.log()
+                alert("Your phone number is wrong");
+            }
+
+            if (emerContact.length!=10 || num.test(emerContact)==false){
+                console.log()
+                alert("Your emergency contact is wrong");
+            }
+
+            if(address==""){
+                alert("Please type in your address")
+            }
+
+
+
+            if (citizenid.length==13 && num.test(citizenid)==true && phoneNumber.length==10 && num.test(phoneNumber)==true && emerContact.length==10 && num.test(emerContact)==true){
+                if(re.test(email)==true){
+            const user = {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                dob: dob,
+                bloodType : bloodType,
+                citizenid: citizenid,
+                gender: gender,
+                address: address,
+                phoneNumber: phoneNumber,
+                emerContact: emerContact,
+            }
+            
+            const data = await axios.post('http://localhost:3000/register',user)
+            localStorage.setItem("username", email)
+            localStorage.setItem("id", data.data.insertedId)
+            window.location.href = "homepage.html";
+            }
+            }
+
+        }
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
+<style>
+    h8 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    h9 {
+        font-size: 16px;
+    }
+    h2 {
+        font-size: 30px;
+        font-family: "Calibri";
+        text-align: center;
+        color: black;
+        font-weight: bold;
+    }
+
+    div.container{
+        width: 490px;
+        height: 500px;
+        left: initial;
+        top: initial;
+        font-weight: 600;
+        transform: translate(70%, 6%);
+        text-align: center;
+    }
+    
+    .btn {
+        background-color: #1544c4;
+        border: none;
+        outline: none;
+        width: 120px;
+        height: 35px;
+        border-radius: 50px;
+        color: #fff;
+        font-weight: 600;
+        margin: 15px 0;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .btn:hover {
+        background-color: #6185d1;
+        color: #fff;
+    }
+
+    .twobutton{
+        text-align: center;
+    }
+
+    .form-control{
+        margin: 10px 10px;
+        border-radius: 10px;
+        border: 1px solid rgb(187, 187, 187);
+        float: left;
+    }
+    .sp{
+        position: fixed;
+        height: 130%;
+        width: 100%;
+        left: -1;
+        bottom: 0;
+        z-index: -1;
+        }
+    
+</style>
+</head>
+<body>
+    <img class = "sp" src="assets/Registeration.png" align ="left">
+    
+    <div class="form">
+    <div class="container">
+        <p><img src="assets/logo.png" alt="Example1" width="60" height="60"></p>
+        <h2>Registration</h2>
+        
+            <div class="mb-3">
+                <input type="text" style="width: 210px;" id="firstname" name="firstname" th:field="*{firstnameOfUser}" class="form-control" placeholder="FirstName" required/>
+                <input type="text" style="width: 210px;" id="lastname" name="lastname" th:field="*{lastnameOfUser}" class="form-control" placeholder="LastName" required/>
+            </div>
+            <!------------------Username/Password----------------->
+            <div class="mb-3">
+               <input class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" th:field="*{username}" type="email" placeholder="orgando.donate@gmail.com" required />
+            </div>
+            <div class="mb-3">
+                <input type="password" th:field="*{password}" name="password" id="password" placeholder="Password" class="form-control" required/>
+            </div>
+            <!------------------Username/Password----------------->
+            <div class="mb-3">
+                <input name="dateOfbirth" class="form-control" th:field="*{dob}" id="dob" placeholder="Date of Brith..." type="date" required/>
+            </div>
+
+            <div class="mb-3">
+                <select th:field="*{gender}" class="form-control" id="gender">
+                    <option value="default" disabled selected>Gender</option>
+                    <option id="male" value="male">Male</option>
+                    <option id="female" value="female">Female</option>
+                    <option id="lgbt" value="lgbt">LGBTQ</option>
+                    <option id="not specify" value="not specify">Not specify</option>
+                </select>
+            </div>
+            <div class="md-3">
+                    <select th:field="*{bloodType}" class="form-control" id="bloodType">
+                        <option value="default" disabled selected>Blood Type</option>
+                        <option id="posO" value="posO">O</option>
+                        <option id="negO" value="negO">O-</option>
+                        <option id="posA" value="posA">A</option>
+                        <option id="negA" value="negA">A-</option>
+                        <option id="posB" value="posB">B</option>
+                        <option id="negB" value="negB">B-</option>
+                        <option id="posAB" value="posAB">AB</option>
+                        <option id="negAB" value="negAB">AB-</option>
+                    </select>
+                </div>
+
+            <div class="mb-3">
+                <input class="form-control" id="citizenid" name="citizenid" pattern="[0-9]{10}" maxlength="13" placeholder="National ID" required/>
+            </div>
+            
+            <div class="mb-3">
+                <input class="form-control" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" maxlength="10" placeholder="Phone Number" required/>
+            </div>
+            <div class="md-6">
+                <input class="form-control" id="emerContact" name="emerContact" pattern="[0-9]{10}" maxlength="10" placeholder="Emergency Contact" required/>
+            </div>
+            
+            <div class="mb-3">
+                <textarea id="address" class="form-control" name="address" rows="3" cols="20" placeholder="Address....." required></textarea>
+            </div>
+            
+            <div class="twobutton">
+                <button onclick="submit()" class="btn btn-primary" name="signup">Sign up</button>
+            </div>
+        
+        <div class="w3-container w3-left">
+            <div class="w3-bar">
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h9>Already have an account ?</h9>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h8><a href="login.html">Log in</a></h8><br><br><br><br>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

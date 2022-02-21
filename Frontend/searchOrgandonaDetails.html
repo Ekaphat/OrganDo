@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+    background-image: url(assets/bgDonateForm.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.center {
+    background-color: white;
+    position: absolute;
+    width: 75%;
+    left: 12%;
+    top: 2.5%;
+    border-radius: 32px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#myInput {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 60px;
+    background-image: url("assets/searchicon.png");
+    background-size: 20px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  margin-top: -1px; 
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+    font-family: Calibri;
+  
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+  
+}
+.row {
+    margin: 10px;
+}
+
+.left {
+  width: 10%;
+}
+
+.right {
+  width: 90%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  
+}
+
+h2 p {
+    text-align: center;
+    font-size: 40px;
+    color: #004E76;
+}
+
+p {
+    font-family: Calibri;
+}
+
+
+        .tab{
+            width: 100px;
+            padding: 5px;
+            border: none;
+            border-radius: 15px; 
+            background:  #004E76;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+          }
+          .tab:hover {
+          background:#6b92c5;
+          }
+
+          .bbtn {
+          width: 100px;
+          padding: 5px;
+          border: none;
+          border-radius: 15px; 
+          background:  #ca0000;
+          font-size: 16px;
+          color: #fff;
+          cursor: pointer;
+          margin: 10px;
+          }
+          .bbtn:hover {
+          background:#ec9191;
+          }
+
+</style>
+
+
+<script>
+    function logout(){
+            localStorage.clear()
+            window.location.href = "login.html";
+            }
+
+            function back(){
+            window.location.href = "homepage.html";
+            }
+</script>
+</head>
+<body>
+
+<div class="center">
+    <button onclick="back()" class="tab">Back</button>
+    <button onclick="logout()" class = "bbtn" style="float: right;">Log out</button>
+<h2><p style="font-family:Calibri">Donation Information</p></h2>
+
+<input type="text" name="searchInput" id="myInput" onkeyup="myFunction()" placeholder="Search for keywords.." title="Type in a name">
+
+<ul id="myUL">
+
+    <!-----for organ 1--->
+    <li>
+        <div class="row" style="background-color:#F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><img src="assets/heart.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="heartinfo" href="Heart details.html"><b>Heart Donation</b></a>
+                <p>When the heart fails, it tends to be because of diseases that cause weakening of the heart muscle or blockages of the blood vessels leading to the heart. Birth defects may also cause problems with the working of the heart. So, the two major reasons for heart transplantation. In both cases, if a life becomes seriously at risk, a heart transplant may be the only option.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for organ 2--->
+    <li>
+        <div class="row" style="background-color: #FFF7E5; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/kidney.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="kidneyinfo" href="Kidney details.html"><b>Kidney Donation</b></a>
+                <p>Kidneys balance the amount of fluids and minerals in your body and create hormones. When they are not working properly, people have to spend many hours a day attached to a dialysis machine to replace some of these functions. A kidney transplant gives people the chance to live life free from dialysis.</p>
+            </div>
+    </li>
+    <!-----for organ 3--->
+    <li>
+        <div class="row" style="background-color: #F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/lung.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="lunginfo" href="Lung details.html"><b>Lung Donation</b></a>
+                <p>Lungs are a delicate part of the vital flow of oxygen round the body. When this process becomes damaged or the lungs are diseased, people can quite quickly become very seriously ill. So, there are around 1,400 people whoa re waiting for the lungs transplant.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for organ 4--->
+    <li>
+        <div class="row" style="background-color: #FFF7E5; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/eye.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="corneainfo" href="Cornea%20details.html"><b>Cornea Donation</b></a>
+                <p>A cornea transplant makes a lasting difference to people’s lives and is a relatively quick procedure. Depending on which type of corneal transplant people need, and how much of the cornea needs replacing, the transplant can be completed in under an hour. So, the cornea transplant is very required for the patient around the world.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for 5 organ--->
+    <li>
+        <div class="row" style="background-color: #F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;" ><p padding="40px"><img src="assets/bone.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="bonemarinfo" href="Bone%20Marrow%20details.html"><b>Bone Marrow Donation</b></a>
+                <p>A bone marrow transplant is also called a stem cell transplant or, more specifically, a hematopoietic stem cell transplant. Transplantation can be used to treat certain types of cancer, such as leukemia, myeloma, and lymphoma, and other blood and immune system diseases that affect the bone marrow.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for 6 organ--->
+    <li>
+        <div class="row" style="background-color: #FFF7E5; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/rib.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="boneinfo" href="Bone%20details.html"><b>Bone Donation</b></a>
+                <p>Bone transplant is the process needed in bone defect cases: for hip operations that sometimes require extra bone. for the repair of bone fractures. for bone tumours where diseased or damaged bone is replaced by healthy donated bone. </p>
+            </div>
+        </div>
+    </li>
+    <!-----for 7 organ--->
+    <li>
+        <div class="row" style="background-color: #F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/liver.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="liverinfo" href="Liver%20details.html"><b>Liver Donation</b></a>
+                <p>As the liver gets progressively damaged it will lose its functions causing liver failure, or end-stage liver disease. At this point, when the quality of life is so poor, or the patient is considered to have a shortened life-expectancy, a transplant is usually considered.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for 8 organ--->
+    <li>
+        <div class="row" style="background-color: #FFF7E5; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/taboon.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="pancreasinfo" href="Pancreas%20details.html"><b>Pancreas Donation</b></a>
+                <p>The pancreas is a vital organ, performing functions necessary in the digestion process, the recipient's native pancreas is left in place, and the donated pancreas is attached in a different location. Because both a pancreas and a kidney are needed for this simultaneous operation, it can mean a very long wait and for a transplant. Also, it is very requisite for the patients.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for blood organization 1-->
+    <li>
+        <div class="row" style="background-color: #F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/blood_or_logo/TRC.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="thairedinfo"href="ThaiRed.html"><b>National Blood Centre</b></a>
+                <p> National Blood Centre established the Thai Red Cross Plasma Fractionation Centre, is assigned by the government to be the core organization to provide sufficient blood and blood products supply with safe and highest quality from voluntary blood donors to patients nationwide. Throughout the years, the National Blood Centre blood and blood products have been implemented with quality and safety for both donors and receivers.</p>
+            </div>
+        </div>
+    </li>
+
+    <!-----for blood organization 2-->
+    <li>
+        <div class="row" style="background-color: #FFF7E5; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/blood_or_logo/SSR.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="sirirajinfo" href="Siriraj.html"><b>Siriraj Hospital</b></a>
+                <p>The blood bank at Siriraj Hospital at Mahidol University is available for all blood types Dr. Parichart said that the Siriraj Blood Donation Centre has a high standard of COVID-19 screening. Every donor and employee takes a temperature check before entering the center. All of the equipment and the area are also sterilized frequently for the safety.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for blood organization 3-->
+    <li>
+        <div class="row" style="background-color: #F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/blood_or_logo/T.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="policeinfo" href="PoliceHos.html"><b>Police General Hospital</b></a>
+                <p>Police General Hospital is located in Pathum Wan district of Bangkok on Rama 1 Road. The history of this hospital dates back over 100 years. Today, this hospital offers all the standard medical services and available for blood donation expected from an accredited national medical facility.</p>
+            </div>
+        </div>
+    </li>
+    <!-----for added info 1-->
+    <li>
+        <div class="row" style="background-color: #FFF7E5; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/policy_logo.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="legislation" href="Legislation.html"><b>[General Info.] Organ Donation Legislation and Policy</b></a>
+                <p>There are several Legislations and policies, which related to organ donation that needed to be concerned. </p>
+            </div>
+        </div>
+    </li>
+    <!-----for added info 2-->
+    <li>
+        <div class="row" style="background-color: #F7E0E2; border-radius: 15px;">
+            <div class="col-sm-2">
+                <center style="margin-top: 6%;"><p padding="40px"><img src="assets/donation steps_logo.png" width="100px" height="100px"></p>
+
+            </div>
+            <div class="col-sm-10">
+                <a id="donationinfo" href="donation steps.html"><b>[General Info.]  Steps of Organ Donation</b></a>
+                <p>To donate the organs, several steps needed to be done. </p>
+            </div>
+        </div>
+    </li>
+
+        <p><img align="right" src="assets/icon.png" width="200px" height="50px"></p>
+
+
+</ul>
+</div>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>

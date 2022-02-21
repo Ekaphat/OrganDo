@@ -1,0 +1,252 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>View visual card</title>
+    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <style>
+        h3 {
+            font-size: 30px;
+            font-family: "Calibri";
+            right: 60%;
+            color: rgb(190, 0, 0);
+            font-weight: bold;
+            text-align: left;
+
+        }
+        h2 {
+            font-size: 16px;
+            font-family: "Calibri";
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            text-align: left;
+        }
+        p {
+            font-size: 16px;
+            font-family: "Calibri";
+            right: 75%;
+            color: rgb(100, 100, 100);
+            font-weight: bold;
+            text-align: left;
+            margin-left: 3%;
+            margin-top: 3%;
+            margin-bottom: 2%;
+
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .button-login {
+
+            padding: 6px 70px;
+        }
+
+        .button-loginn {
+
+            padding: 6px 45px;
+        }
+
+
+        .input-field {
+            max-width: 400px;
+            margin: 15px 0;
+            width: 80%;
+            height: 40px;
+            border-radius: 30px;
+            border: 1px solid rgb(114, 114, 114);
+            display: grid;
+            grid-template-columns: 15% 85%;
+            padding: 0 0.4rem;
+            position: relative;
+        }
+
+        .input-field i {
+            text-align: center;
+            line-height: 38px;
+            color: #b6b6b6;
+            transition: 0.5s;
+            font-size: 1rem;
+        }
+
+        .input-field input {
+            background: none;
+            outline: none;
+            border: none;
+            line-height: 31px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .input-field input::placeholder {
+            color: #aaa;
+            font-weight: 200;
+        }
+
+
+        .btn {
+            background-color: #1544c4;
+            border: none;
+            outline: none;
+            width: 120px;
+            height: 35px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #6185d1;
+            color: #fff;
+        }
+
+        .w3-bar {
+            margin: 0;
+            position: absolute;
+            top: 78%;
+            left: 1%;
+        }
+
+        hr {
+            margin-top: 20px;
+            color: #aaa;
+        }
+
+        .avatar {
+            vertical-align: middle;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+        }
+        .Fulllogo {
+            border-radius: 50%;
+            
+        }
+
+        .container {
+            background-color: white;
+            position: absolute;
+            border-radius: 32px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+            width: 900px;
+            height: 550px;
+            transform: translate(70%, 73%);
+            right: 60%;
+            bottom: 68%;
+            left: initial;
+            top: initial;
+        }
+        .sp{
+        position: fixed;
+        height: 130%;
+        width: 100%;
+        left: -1;
+        bottom: 0;
+        z-index: -1;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var username = localStorage.getItem("username")
+        const user ={
+                email: username,
+            }
+        async function loadData(){
+          const data = await axios.post('http://localhost:3000/visualCard',user)
+          const cardNo = document.getElementById("cardNo")
+          cardNo.innerText= data.data[0]._id
+          const iden = document.getElementById("iden")
+          iden.innerText= data.data[0].citizenid
+          const name = document.getElementById("name")
+          name.innerText= data.data[0].firstname + " " +data.data[0].lastname
+          const address = document.getElementById("address") 
+          address.innerText= data.data[0].address
+          const phone = document.getElementById("phone")
+          phone.innerText= data.data[0].phoneNumber
+          const merContact = document.getElementById("merContact")
+          merContact.innerText= data.data[0].emerContact
+          const data2 = await axios.post('http://localhost:3000/visualCard2',user)
+          const donatedorgan = document.getElementById("donatedorgan")
+          donatedorgan.innerText= data2.data[0].organ 
+        }
+    </script>
+</head>
+<body onload="loadData()">
+    <img class = "sp" src="assets/Login3.png" align="left">
+    <section class="bg-primary text-center">
+    <div class="container">
+            <div class = "row">
+                <div class="col-sm-5"style="margin-top:2%;">
+                
+                </div>
+                <div class="col-sm-4" style="margin-top:3%;">
+                    <h3>Visual Card</h3>
+                </div>
+                <div class="col-sm-3"style="margin-top:2%;">
+                    <img class="Fulllogo" src="assets/Fulllogo.jpeg" align="left" width="180" height="54"> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5" style="margin-top: 5%;">
+                    <img src="assets/img_avatar.png" alt="Avatar" class="avatar">
+                </div>
+                <div class="col-sm-7">
+                    <div style="display: flex;">
+                        <p>Card Number &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<p id="cardNo"></p></p> 
+                    </div>
+                    <div style="display: flex;">
+                        <p>Identification Number &nbsp;<p id="iden"></p></p> 
+                    </div>
+                    <div style="display: flex;">
+                        <p>Name &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<p id="name"></p></p> 
+                    </div>
+                    <div style="display: flex;">
+                        <p>Donated Organ &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p id="donatedorgan"></p> 
+                    </div>
+                    <div style="display: flex;">
+                        <p>Address &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<p id="address"></p>
+                    </div>
+                    <div style="display: flex;">
+                        <p>Phone Number &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p id="phone"></p> 
+                    </div>
+                    <div style="display: flex;">
+                        <p>Emergency Contact &emsp;&nbsp;&nbsp;<p id="merContact"></p> 
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-4" style="margin-top:7%;">
+                            <h2>09 March 2020</h2>
+                            <p>Date of Issue</p>
+                        </div>
+                        <div class="col-sm-4" style="margin-top:2%;">
+                            <img src="assets/signature.png"  width="130" height="54" align="left">
+                            <p>Officer Signature</p>
+                        </div>
+                        <div class="col-sm-4" style="margin-top:7%;">
+                            <h2>01 January 2025</h2>
+                            <p>Expiried Date</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+</body>
+
+</html>
